@@ -1,0 +1,14 @@
+
+How Microservices Talk to Each Other
+Since they are separate applications, services need a way to communicate over the network.
+
+The API Gateway
+Clients (like a mobile app or a website) don't talk to every single service directly. They talk to an API Gateway, which acts as a single front door. The gateway takes a request and routes it to the correct service(s). It also handles common tasks like user authentication, security, and rate limiting.
+
+Service Discovery
+When the Shopping-Cart service needs to talk to the Product-Catalog service, how does it find its network address? Instances are constantly being created and destroyed. A Service Discovery tool (like Consul or Eureka) acts as a phonebook. When a new Product-Catalog instance starts, it registers itself in the phonebook. The Shopping-Cart service just asks the phonebook for the current address.
+
+Communication Styles
+Synchronous (Request/Response): Service A sends a request to Service B and waits for a response. This is simple and direct, often done using REST APIs (over HTTP) or gRPC (a high-performance alternative). Use this when you need an immediate answer.
+
+Asynchronous (Event-Driven): Service A sends a message (an "event") to a message broker (like RabbitMQ or Apache Kafka) and doesn't wait for a response. Other services can subscribe to these messages and react when they want. For example, when an order is placed, the Order service might publish an OrderPlaced event. The Notification service listens for this and sends an email, while the Shipping service also listens and starts the shipping process. This decouples services, making the system more resilient.
