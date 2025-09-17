@@ -1,0 +1,7 @@
+Loosely coupled means that two parts of a system (like classes, modules, services, or components) have little knowledge or dependency on each other.
+
+👉 In simple words:
+
+Tightly coupled: If you change one part, you must change the other because they are directly connected.
+
+Loosely coupled: You can change one part without breaking or modifying the other because they are connected indirectly (through interfaces, contracts, or dependency injection).
